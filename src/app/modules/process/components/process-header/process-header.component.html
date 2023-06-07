@@ -1,5 +1,16 @@
 <div class="main-outer">
 
-  <a>Profile</a>&nbsp; &nbsp;
-  <a href="">Sign Up</a>
+  <a mat-icon-button [matMenuTriggerFor]="menu">Profile</a>&nbsp; &nbsp;
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>inventory</mat-icon>
+      <span>Products</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>manage_accounts</mat-icon>
+      <span>My Account</span>
+    </button>
+  </mat-menu>
+
+  <a href="">Login</a>
 </div>
