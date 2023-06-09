@@ -12,3 +12,11 @@ a{
   cursor: pointer;
   text-decoration: none;
 }
+.access-console-button{
+  padding: 8px 20px;
+  background-color: var(--orange-color);
+  border: none;
+  border-radius: 50px;
+  color: var(--font-color);
+  margin-left: 15px;
+}
