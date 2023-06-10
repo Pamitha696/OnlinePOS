@@ -38,8 +38,8 @@
             <input formControlName="amount" type="number" step="0.01" class="form-control" id="Amount">
           </div>
         </div>
-        <button class="addbutton" type="submit" mat-raised-button color="primary">Add Product</button>&nbsp;
-        <button class="cancelbutton"  type="submit" mat-raised-button color="primary">Cancel Product</button>
+        <button (click)="addbuttonClicked()"  class="addbutton" mat-raised-button color="primary">Add Product</button>&nbsp;
+        <button class="cancelbutton"   mat-raised-button color="primary">Cancel Product</button>
        <br>
         <br>
         <br>
@@ -66,40 +66,30 @@
       </form>
     </div>
     <div class="col-6 col-sm-6 col-md-6 col-lg-6 inner" >
-      <table class="table">
+      <table class="table table-hover">
         <thead>
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">Item Description</th>
-          <th scope="col">Price</th>
-          <th scope="col">Qty</th>
-          <th scope="col">Amount</th>
+
+          <th>Item Description</th>
+          <th>Price</th>
+          <th>Qty</th>
+          <th>Amount</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry the Bird</td>
-          <td>@twitter</td>
-          <td>@fat</td>
-          <td>@fat</td>
-        </tr>
+        <tr *ngFor="let item of addeditems">
+          <td>{{item?.itemdescription}}</td>
+          <td>{{item?.price}}</td>
+          <td>{{item?.qty}}</td>
+          <td>{{item?.amount}}</td>
 
+
+
+        </tr>
         </tbody>
+        <tfoot>
+
+        </tfoot>
       </table>
       <br>
       <br>
@@ -123,7 +113,7 @@
 
 
       <br>
-      <button class="Savebutton" type="submit" mat-raised-button color="primary">Save & Print</button>&nbsp;
+      <button class="Savebutton"  mat-raised-button color="primary">Save & Print</button>&nbsp;
     </div>
   </div>
 </div>

@@ -14,6 +14,8 @@ export class AddOrderComponent implements OnInit {
   products:any[]=[];
   paytypes:any[]=[];
   selectedItem: any;
+  addeditems: any[] = [];
+
   constructor(private productService:ProductService,private paymentService:PaymentService) { }
 
 
@@ -27,6 +29,7 @@ export class AddOrderComponent implements OnInit {
     nettotal: new FormControl(''),
     paytype: new FormControl('')
   })
+
 
 
   ngOnInit(): void {
@@ -70,6 +73,26 @@ export class AddOrderComponent implements OnInit {
     }
     else {
       /*this.snackbarService.showSnackbar('Please Select the Item','Close')*/
+    }
+  }
+
+  /*findAmount() {
+    if(this.selectedItem) {
+      this.form.patchValue({
+        amount: this.form.get('qty')?.value! * this.form.get('price')?.value!
+      })
+    }
+  }*/
+
+  addbuttonClicked() {
+    if(this.selectedItem) {
+      let item: any = {
+        itemdescription: this.products.find(x => x.propertyId === this.selectedItem).displayName,
+        price: this.form.get('price')?.value!,
+        qty: this.form.get('qty')?.value!,
+        amount:this.form.get('qty')?.value! * this.form.get('price')?.value!
+      }
+      this.addeditems.push(item);
     }
   }
 }

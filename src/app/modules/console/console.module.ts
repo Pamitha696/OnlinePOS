@@ -12,6 +12,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {MatCardModule} from "@angular/material/card";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import { OrderHeaderComponent } from './inner-items/dashboard-context/orders/manage-order/order-header/order-header.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     ConsoleComponent,
     DashboardContextComponent,
     ManageOrderComponent,
-    AddOrderComponent
+    AddOrderComponent,
+    OrderHeaderComponent
   ],
   imports: [
     CommonModule,
