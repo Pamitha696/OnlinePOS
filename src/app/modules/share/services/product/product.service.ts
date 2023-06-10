@@ -12,4 +12,9 @@ export class ProductService {
  public findAll():Observable<any> {
     return this.http.get('http://localhost:8000/api/v1/products/member/list');
   }
+
+  public findProduct(id: string): Observable<any> {
+    return this.http.get('http://localhost:8000/api/v1/products/member/find/' + id);
+
+  }
 }
