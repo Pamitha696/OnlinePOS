@@ -16,6 +16,7 @@ export class AddOrderComponent implements OnInit {
   selectedItem: any;
   addeditems: any[] = [];
   totalamount: number = 0;
+
   constructor(private productService:ProductService,private paymentService:PaymentService) { }
 
 
@@ -67,6 +68,7 @@ export class AddOrderComponent implements OnInit {
           this.form.patchValue({
 
             price: response.data.sellingPrice
+
           })
         }
       },error => {
@@ -88,15 +90,28 @@ export class AddOrderComponent implements OnInit {
 
   addbuttonClicked() {
     if(this.selectedItem) {
-      let item: any = {
-        itemdescription: this.products.find(x => x.propertyId === this.selectedItem).displayName,
-        price: this.form.get('price')?.value!,
-        qty: this.form.get('qty')?.value!,
-        amount:this.form.get('qty')?.value! * this.form.get('price')?.value!
+
+      const existingItem = this.addeditems.find(item => item.itemdescription === this.products.find(x => x.propertyId === this.selectedItem).displayName);
+
+      if (existingItem) {
+
+        console.log('Item already added to the table!');
+        return;
       }
-      this.addeditems.push(item);
-      this.calculateTotalAmount();
-    }
+
+        let item: any = {
+
+          itemdescription: this.products.find(x => x.propertyId === this.selectedItem).displayName,
+          price: this.form.get('price')?.value!,
+          qty: this.form.get('qty')?.value!,
+          amount: this.form.get('qty')?.value! * this.form.get('price')?.value!
+        }
+        this.addeditems.push(item);
+        this.calculateTotalAmount();
+        qty: this.form.get('qty')?.reset()
+
+      }
+
   }
 
   deleteItem(index: number) {
@@ -127,5 +142,10 @@ export class AddOrderComponent implements OnInit {
         balanceamount: this.form.get('paidamount')?.value! - this.form.get('nettotal')?.value!
       })
     }
+  }
+
+  cancelbuttonClicked() {
+    this.addeditems = [];
+    this.form.reset();
   }
 }
