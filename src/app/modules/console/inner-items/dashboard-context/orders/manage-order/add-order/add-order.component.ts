@@ -15,7 +15,7 @@ export class AddOrderComponent implements OnInit {
   paytypes:any[]=[];
   selectedItem: any;
   addeditems: any[] = [];
-
+  totalamount: number = 0;
   constructor(private productService:ProductService,private paymentService:PaymentService) { }
 
 
@@ -27,7 +27,9 @@ export class AddOrderComponent implements OnInit {
     totalamount: new FormControl(''),
     discount: new FormControl(''),
     nettotal: new FormControl(''),
-    paytype: new FormControl('')
+    paytype: new FormControl('',[Validators.required]),
+    paidamount:new FormControl('',[Validators.required]),
+    balanceamount:new FormControl('')
   })
 
 
@@ -93,6 +95,37 @@ export class AddOrderComponent implements OnInit {
         amount:this.form.get('qty')?.value! * this.form.get('price')?.value!
       }
       this.addeditems.push(item);
+      this.calculateTotalAmount();
+    }
+  }
+
+  deleteItem(index: number) {
+    this.addeditems.splice(index, 1);
+    this.calculateTotalAmount();
+  }
+  calculateTotalAmount(): void {
+    if(this.selectedItem) {
+      this.form.patchValue({
+        totalamount: this.addeditems.reduce((total, item) => total + item.amount, 0)
+      })
+    }
+
+   /* this.totalamount = this.addeditems.reduce((total, item) => total + item.amount, 0);*/
+  }
+
+  calNettotal() {
+    if(this.selectedItem) {
+      this.form.patchValue({
+        nettotal: this.form.get('totalamount')?.value! - this.form.get('discount')?.value!
+      })
+    }
+  }
+
+  calBalance() {
+    if(this.selectedItem) {
+      this.form.patchValue({
+        balanceamount: this.form.get('paidamount')?.value! - this.form.get('nettotal')?.value!
+      })
     }
   }
 }

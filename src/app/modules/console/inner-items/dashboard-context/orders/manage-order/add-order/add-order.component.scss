@@ -7,13 +7,15 @@
 }
 .inner{
   margin-bottom: 20px;
+
 }
 .cancelbutton{
   background-color: #d35400;
 
 }
-.table{
-
+.table table-hover{
+  height: 40px;
+  overflow: scroll;
 }
 th{
   padding-top: 12px;
@@ -27,4 +29,18 @@ tr{
 }
 td{
   border: 1px solid #ddd;
+}
+.delete{
+  background-color: #c0392b;
+  border: none;
+  border-radius: 50px;
+}
+.inner-scroll{
+  height:200px;
+  overflow: scroll;
+}
+
+.scrl{z-index:100;
+
+
 }
