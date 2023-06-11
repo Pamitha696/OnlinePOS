@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ShareRoutingModule } from './share-routing.module';
 import { ShareComponent } from './share.component';
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { ShareComponent } from './share.component';
   ],
   imports: [
     CommonModule,
-    ShareRoutingModule
+    ShareRoutingModule,
+    MatSnackBarModule
   ]
 })
 export class ShareModule { }
